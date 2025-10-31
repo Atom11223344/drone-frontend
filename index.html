@@ -1,13 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>drone-frontend</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Drone Dashboard</title>
+</head>
+<body>
+  <nav>
+    <a href="/">Page 1: View Config</a>
+    <a href="/page2.html">Page 2: Temp Form</a>
+    <a href="/page3.html">Page 3: View Logs</a>
+  </nav>
+
+  <hr>
+
+  <div id="app">
+    <h1>Page 1: View Config [cite: 95]</h1>
+    <h2>ข้อมูล Config ของ Drone</h2>
+    <p><strong>Drone ID:</strong> <span id="config-id">Loading...</span></p>
+    <p><strong>Drone Name:</strong> <span id="config-name">Loading...</span></p>
+    <p><strong>Light:</strong> <span id="config-light">Loading...</span></p>
+    <p><strong>Country:</strong> <span id="config-country">Loading...</span></p>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
 </html>
