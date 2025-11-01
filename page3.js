@@ -25,17 +25,29 @@ async function fetchLogs() {
     tableBody.innerHTML = '';
 
     // 6. วนลูปสร้างแถวในตาราง [cite: 121]
-    logs.forEach(log => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${log.created}</td>
-        <td>${log.country}</td>
-        <td>${log.drone_id}</td>
-        <td>${log.drone_name}</td>
-        <td>${log.celsius}</td>
-      `;
-      tableBody.appendChild(row);
-    });
+  logs.forEach(log => {
+          const row = document.createElement('tr');
+          
+          // 1. รับค่าเวลา (String) จาก Server
+          const utcDateString = log.created; 
+          
+          // 2. แปลง String ให้เป็น "วัตถุวันที่" (Date Object)
+          const date = new Date(utcDateString);
+          
+          // 3. "ทีเด็ด" อยู่ตรงนี้ครับ
+          // .toLocaleString() จะ "แปลง" UTC เป็น "เวลาท้องถิ่น" (เช่น +7)
+          // และ "จัดรูปแบบ" (เช่น 1/11/2025, 3:25:25 PM) ให้เราอัตโนมัติ
+          const localTimeString = date.toLocaleString('en-US'); // ระบุ 'en-US' เพื่อ "บังคับ" ให้เป็น AM/PM
+
+          row.innerHTML = `
+            <td>${localTimeString}</td> 
+            <td>${log.country}</td>
+            <td>${log.drone_id}</td>
+            <td>${log.drone_name}</td>
+            <td>${log.celsius}</td>
+          `;
+          tableBody.appendChild(row);
+        });
 
   } catch (error) {
     console.error('Error fetching logs:', error);

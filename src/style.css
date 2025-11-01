@@ -1,96 +1,264 @@
+/* --- 0. การตั้งค่าสี (Theme) --- */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --bg-color: #0d0d0d;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2a2a2a;
+  --border-color: #333;
+  --text-primary: #e0e0e0;
+  --text-secondary: #aaa;
+  
+  --primary-color-light: #00ff7f;
+  --primary-color-dark: #008f4c;
+  
+  --text-on-primary: #0d0d0d;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
+/* --- 1. Foundation (พื้นฐาน) --- */
 body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  /* FIX: "ย้อนกลับ" มาใช้ฟอนต์สากล (System UI) */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
+/* --- 2. Layout (โครงสร้าง) --- */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
   padding: 2rem;
-  text-align: center;
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+/* --- 3. Components (ชิ้นส่วน) --- */
+
+/* --- Navbar (ฉบับ Hamburger) --- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
 }
 
-.card {
-  padding: 2em;
+/* FIX: ทำให้ "DroneAPI" ไล่สี (แต่ยังเรืองแสง) */
+.nav-brand {
+  background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
+  
+  /* FIX: "เพิ่ม" เอฟเฟกต์เรืองแสง (Glow Effect) */
+  text-shadow: 0 0 10px rgba(0, 255, 127, 0.5); 
 }
 
-.read-the-docs {
-  color: #888;
+/* (โค้ด .nav-menu และ .nav-toggle เหมือนเดิม) */
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: absolute;
+  top: 80px; 
+  left: 0;
+  right: 0;
+  background-color: var(--bg-secondary);
+  padding: 2rem;
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease-in-out;
 }
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.nav-menu.is-open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+.nav-menu a {
+  color: var(--primary-color-dark);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500; /* ใช้น้ำหนัก "ปกติ" */
+}
+.nav-menu a:hover {
+  color: var(--primary-color-light);
+}
+.nav-toggle {
+  background: none;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  transition: opacity 0.2s ease-in-out;
 }
-button:hover {
-  border-color: #646cff;
+.nav-toggle:hover {
+  opacity: 0.7;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.nav-toggle .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-primary);
+  border-radius: 2px;
+}
+/* --- (จบส่วน Navbar) --- */
+
+
+/* --- Headings (หัวข้อ) --- */
+/* FIX: ทำให้ H1 ไล่สี (และเรืองแสง) */
+h1 {
+  background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
+  
+  /* FIX: "เพิ่ม" เอฟเฟกต์เรืองแสง (Glow Effect) */
+  text-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
+}
+h2 {
+  font-weight: 400; /* ใช้น้ำหนัก "ปกติ" */
+  color: #ccc;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* --- Page 1: Config Details --- */
+#config-details p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+#config-details strong {
+  color: var(--text-primary);
+  font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
+}
+#config-details span {
+  color: var(--primary-color-light);
+}
+
+/* --- Page 2: Form --- */
+#log-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 400px;
+}
+#log-form label {
+  font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
+}
+#log-form input, #log-form button {
+  padding: 0.8rem;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  /* FIX: ทำให้ฟอนต์ในปุ่มใช้ฟอนต์สากล (System UI) */
+  font-family: inherit; 
+}
+#log-form input {
+  background-color: #333;
+  color: #eee;
+  border: 1px solid var(--border-color);
+}
+#log-form button {
+  background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color-dark));
+  color: var(--text-on-primary);
+  font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+#log-form button:hover {
+  opacity: 0.8;
+}
+
+/* --- Page 3: Logs Table --- */
+#logs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+#logs-table th, #logs-table td {
+  padding: 0.8rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+#logs-table thead th {
+  background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color-dark));
+  color: var(--text-on-primary);
+  font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
+}
+#logs-table tbody tr:nth-child(even) {
+  background-color: var(--bg-tertiary);
+}
+
+/* --- Home Page Buttons --- */
+.home-buttons {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.button-primary,
+.button-secondary {
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
+  font-size: 1rem;
+  transition: all 0.2s;
+  /* FIX: ทำให้ฟอนต์ในปุ่มใช้ฟอนต์สากล (System UI) */
+  font-family: inherit;
+}
+.button-primary {
+  background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color-dark));
+  color: var(--text-on-primary);
+  border: none;
+}
+.button-primary:hover {
+  opacity: 0.8;
+}
+.button-secondary {
+  background-color: transparent;
+  color: var(--primary-color-dark);
+  border: 2px solid var(--primary-color-dark);
+}
+.button-secondary:hover {
+  background-color: var(--primary-color-dark);
+  color: var(--text-on-primary);
+}
+
+/* (โค้ด <iframe> ของ Spline) */
+.container iframe {
+  width: 100%;
+  max-width: 600px;
+  height: 350px; 
+  border: none;
+  border-radius: 8px;
+  margin-top: 1rem; 
+  margin-bottom: 0.5rem;
+}
+
+/* (โค้ด Home Page Content) */
+.home-content {
+  text-align: center;
+  padding: 0;
+}
+.home-content h1 {
+  margin-bottom: 0.5rem;
+}
+.home-content p {
+  margin-bottom: 0;
+  color: var(--text-secondary);
+}
+.home-buttons {
+  margin-top: 1.5rem;
 }

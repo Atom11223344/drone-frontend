@@ -4,19 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/src/style.css">
-  <title>Drone Dashboard - Home</title>
+  <title>Drone Dashboard - Config</title>
 </head>
 <body>
 
   <nav class="navbar">
     <a href="/" class="nav-brand">DroneAPI</a>
-    
     <button class="nav-toggle" id="nav-toggle">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+      <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
-    
     <div class="nav-menu" id="nav-menu">
       <a href="/">Home</a>
       <a href="/config.html">View Config</a>
@@ -26,21 +22,18 @@
   </nav>
 
   <div class="container">
-    <div class="home-content">
-      <h1>DroneAPI Dashboard</h1>
-    <p style="font-size: 1.2rem; color: #aaa;">
-  Drone data recording and tracking system.
-</p>
-
-<iframe src='https://my.spline.design/dronege-balUJ1MSx9MfDqL2u6tNJ1RH/' frameborder='0' width='100%' height='100%'></iframe>
-<div class="home-buttons">
-      <div class="home-buttons">
-        <a href="/page2.html" class="button-primary">Temperature Record</a>
-        <a href="/page3.html" class="button-secondary">View Logs</a>
-      </div>
+    <div id="config-details">
+      <h1>View Config</h1>
+      <h2>ข้อมูล Config ของ Drone</h2>
+      
+      <p><strong>Drone ID:</strong> <span id="config-id">Loading...</span></p>
+      <p><strong>Drone Name:</strong> <span id="config-name">Loading...</span></p>
+      <p><strong>Light:</strong> <span id="config-light">Loading...</span></p>
+      <p><strong>Country:</strong> <span id="config-country">Loading...</span></p>
     </div>
   </div>
 
   <script type="module" src="/src/nav.js"></script>
+  <script type="module" src="/main.js"></script>
 </body>
 </html>
