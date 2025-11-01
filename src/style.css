@@ -18,7 +18,7 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-primary);
-  /* FIX: "ย้อนกลับ" มาใช้ฟอนต์สากล (System UI) */
+ 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
 }
@@ -35,7 +35,7 @@ body {
 
 /* --- 3. Components (ชิ้นส่วน) --- */
 
-/* --- Navbar (ฉบับ Hamburger) --- */
+/* --- Navbar --- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -45,7 +45,7 @@ body {
   border-bottom: 1px solid var(--border-color);
 }
 
-/* FIX: ทำให้ "DroneAPI" ไล่สี (แต่ยังเรืองแสง) */
+
 .nav-brand {
   background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color-dark));
   -webkit-background-clip: text;
@@ -61,7 +61,7 @@ body {
   text-shadow: 0 0 10px rgba(0, 255, 127, 0.5); 
 }
 
-/* (โค้ด .nav-menu และ .nav-toggle เหมือนเดิม) */
+
 .nav-menu {
   display: flex;
   flex-direction: column;
@@ -114,7 +114,7 @@ body {
 
 
 /* --- Headings (หัวข้อ) --- */
-/* FIX: ทำให้ H1 ไล่สี (และเรืองแสง) */
+
 h1 {
   background: linear-gradient(90deg, var(--primary-color-light), var(--primary-color-dark));
   -webkit-background-clip: text;
@@ -123,7 +123,7 @@ h1 {
   color: transparent;
   font-weight: 700; /* ใช้น้ำหนัก "หนา" (Bold) */
   
-  /* FIX: "เพิ่ม" เอฟเฟกต์เรืองแสง (Glow Effect) */
+  
   text-shadow: 0 0 15px rgba(0, 255, 127, 0.5);
 }
 h2 {
@@ -261,4 +261,19 @@ h2 {
 }
 .home-buttons {
   margin-top: 1.5rem;
+}
+
+/* --- 6.  ทำให้ตาราง Responsive --- */
+
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; 
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+#logs-table {
+  margin-top: 0; 
+  border: none;
 }
